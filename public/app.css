@@ -6,12 +6,20 @@ body {
     color: black;
 }
 
+a {
+    text-decoration: none;
+    color: navy;
+}
+
 p {
     line-height: 1.6rem;
 }
 
+article {
+    padding: 1rem 1rem;
+}
+
 article + article {
     margin-top: 2rem;
-    padding-top: 2rem;
     border-top: 1px solid lightgray;
 }
