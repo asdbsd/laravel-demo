@@ -12,6 +12,21 @@ class Post extends Model
     protected $fillable = ['title', 'slug', 'excerpt', 'body', 'published_at', 'category_id', 'user_id'];
     protected $with = ['category', 'author'];
 
+    public function scopeFilter($query, array $filters)
+    {
+        $query
+            ->when($filters['search'] ?? false, fn($query, $search) =>
+                $query
+                    ->where('title', 'like', '%' . $search . '%')
+                    ->orWhere('body', 'like', '%' . $search . '%'));
+
+        // if ($filters['search'] ?? false) {
+        //     $query
+        //         ->where('title', 'like', '%' . request('search') . '%')
+        //         ->orWhere('body', 'like', '%' . request('search') . '%');
+        // }
+    }
+
     public function getRouteKeyName()
     {
         return 'slug';
