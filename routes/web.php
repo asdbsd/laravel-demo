@@ -19,15 +19,22 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('posts', ['posts' => Post::latest()->get()]);
-});
+    return view('posts', [
+        'posts' => Post::latest()->get(),
+        'categories' => Category::all()
+    ]);
+})->name('home');
 
 Route::get('/posts/{post}', function (Post $post) {
     return view('post', ['post' => $post]);
 });
 
 Route::get('/categories/{category}', function(Category $category) {
-    return view('posts', ['posts' =>  $category->posts]);
+    return view('posts', [
+        'posts' =>  $category->posts,
+        'currentCategory'=> $category,
+        'categories' => Category::all()
+    ]);
 });
 
 Route::get('/authors/{author}', function(User $author) {
