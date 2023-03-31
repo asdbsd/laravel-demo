@@ -9,7 +9,7 @@ class Post extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['title', 'slug', 'excerpt', 'body', 'published_at', 'category_id', 'user_id'];
+    protected $fillable = ['title', 'thumbnail', 'slug', 'excerpt', 'body', 'published_at', 'category_id', 'user_id'];
     protected $with = ['category', 'author'];
 
     public function scopeFilter($query, array $filters)
@@ -73,5 +73,10 @@ class Post extends Model
     public function author()
     {
         return $this->belongsTo(User::class, 'user_id');
+    }
+
+    public function comments()
+    {
+        return $this->hasMany(Comment::class);
     }
 }

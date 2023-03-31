@@ -1,9 +1,9 @@
 <x-dropdown>
     <x-slot name="trigger">
-        <button class="pl-3 py-2 text-sm text-left flex font-semibold" style="width: 100%;">
+        <button class="pl-3 py-2 text-sm text-left flex font-semibold w-full">
             {{ isset($currentCategory) ? ucwords($currentCategory->name) : 'Categories' }}
 
-            <x-svg-item name="down-arrow" class="absolute pointer-events-none" style="right: 12px;" />
+            <x-svg-item name="down-arrow" class="absolute pointer-events-none relative" style="left: 12px;"/>
         </button>
 
     </x-slot>

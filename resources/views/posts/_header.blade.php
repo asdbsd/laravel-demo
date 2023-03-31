@@ -5,21 +5,9 @@
 
     <div class="space-y-2 lg:space-y-0 lg:space-x-4 mt-4">
         <!--  Category -->
-        <x-category-dropdown />
-
-        {{-- <!-- Other Filters -->
-        <div class="relative flex lg:inline-flex items-center bg-gray-100 rounded-xl">
-            <select class="flex-1 appearance-none bg-transparent py-2 pl-3 pr-9 text-sm font-semibold">
-                <option value="category" disabled selected>Other Filters
-                </option>
-                <option value="foo">Foo
-                </option>
-                <option value="bar">Bar
-                </option>
-            </select>
-
-            <x-svg-item name="down-arrow" class="absolute pointer-events-none" style="right: 12px;" />
-        </div> --}}
+        <div class="lg:inline-flex lg:w-32 relative bg-gray-100 rounded-xl w-full">
+            <x-category-dropdown />
+        </div>
 
 
         <!-- Search -->

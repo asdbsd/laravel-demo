@@ -1,16 +1,16 @@
 @props(['post'])
 <x-layout>
-    <main class="max-w-6xl mx-auto mt-5 lg:mt-10 space-y-6">
+    <main class="max-w-4xl mx-auto mt-5 lg:mt-10 space-y-6">
         <article class="max-w-4xl mx-auto lg:grid lg:grid-cols-12 gap-x-10">
             <div class="col-span-4 lg:text-center lg:pt-14 mb-10">
-                <img src="/images/illustration-1.png" alt="" class="rounded-xl">
+                <img src="{{ asset('storage/' . $post->thumbnail) }}" alt="blog-post-thumbnail" class="rounded-xl">
 
                 <p class="mt-4 block text-gray-400 text-xs">
                     Published <time>{{ $post->created_at->diffForHumans() }}</time>
                 </p>
 
                 <div class="flex items-center lg:justify-center text-sm mt-4">
-                    <img src="/images/lary-avatar.svg" alt="Lary avatar">
+                    <img src="/images/lary-avatar.svg" alt="post-thumbnail">
                     <div class="ml-3 text-left">
                         <h5 class="font-bold">
                             <a href="/?author={{ $post->author->username }}">{{ $post->author->name }}</a>
@@ -50,7 +50,27 @@
                 <div class="space-y-4 lg:text-lg leading-loose">
                     {!! $post->body !!}
                 </div>
+                <hr class="mt-5">
+
             </div>
+
+            @auth
+                <section class="col-span-8 col-start-5 mt-3 space-y-6">
+
+                    <x-comment-form :postSlug="$post->slug" />
+
+                    @foreach ($post->comments as $comment)
+                        <x-post-comment :comment="$comment" />
+                    @endforeach
+
+                </section>
+            @else
+                <section class="col-span-8 col-start-5 mt-3 space-y-6 text-center">
+                    <a href="/register" class="text-blue-500">Register</a> or <a class="text-blue-500"
+                        href="/login">Login</a> to leave a comment.
+                </section>
+
+            @endauth
         </article>
     </main>
 </x-layout>
